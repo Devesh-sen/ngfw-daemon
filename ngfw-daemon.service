@@ -1,0 +1,32 @@
+[Unit]
+Description=NGFW Auto-Blocker
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Use the repo env file (optional: '-' means "ignore if missing")
+EnvironmentFile=-/home/USERNAME/ngfw_daemon/ngfw.env
+# Run the daemon from the repo
+ExecStart=/usr/bin/python3 -u /home/USERNAME/ngfw_daemon/ngfw_daemon.py
+WorkingDirectory=/home/USERNAME/ngfw_daemon
+
+Restart=always
+RestartSec=5
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ProtectHome=yes
+# Allow writes only to logs/state directory and the firehol file in the repo
+ReadWritePaths=/home/USERNAME/ngfw_daemon/logs_and_utilities /home/USERNAME/ngfw_daemon/firehol_level1.netset
+
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_RAW
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+

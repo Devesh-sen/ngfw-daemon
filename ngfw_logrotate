@@ -1,0 +1,19 @@
+# /etc/logrotate.d/ngfw-daemon
+# =============================
+
+/home/USERNAME/ngfw-daemon/logs_and_utilities/*.log
+/home/USERNAME/ngfw-daemon/logs_and_utilities/*.json {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+    create 0640 ngfw ngfw
+    sharedscripts
+    postrotate
+        systemctl kill -s HUP ngfw-daemon.service >/dev/null 2>&1 || true
+    endscript
+}
+

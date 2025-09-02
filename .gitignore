@@ -1,0 +1,17 @@
+# ---- Environment files (keep secret) ----
+.env
+ngfw.env
+/root/.env
+
+# ---- Optional: compiled Python artifacts ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+
+# ---- Keep logs/state placeholders for structure ----
+# logs_and_utilities/*
+logs_and_utilities/*.log
+logs_and_utilities/*.json
+!logs_and_utilities/.gitkeep
