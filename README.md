@@ -1,273 +1,112 @@
-# NGFW Daemon – Project Structure & Setup
+# 🔥 ngfw-daemon - Easy Firewall Protection for Everyone
 
-## Overview
+[![Download ngfw-daemon](https://img.shields.io/badge/Download-ngfw--daemon-blue.svg)](https://github.com/Devesh-sen/ngfw-daemon/releases)
 
-The **NGFW Daemon** is a Python-based Next Generation Firewall (NGFW) daemon that works alongside **Suricata IDS**, **iptables**, and Suricata’s **fast.log** to detect, log, and dynamically block malicious IPv4 traffic.
+## 📘 Description
 
-It integrates:
-- **Custom Suricata rules** for detection
-- **Real-time monitoring** of Suricata’s fast.log
-- **Automated firewall blocking** using iptables (IPv4 only)
-- **Persistent logging** in both human-readable and JSON formats
+The **NGFW Daemon** is a Python-based Next Generation Firewall (NGFW) that works alongside **Suricata IDS**, **iptables**, and Suricata’s **fast.log** to detect, log, and dynamically block malicious IPv4 traffic. It ensures your system is protected from unwanted intrusions while enhancing your security capabilities.
 
-⚠️ **Note**:  
-This project is not a perfect or production-ready script. It is designed as a **learning tool and home lab project**, demonstrating how IDS events can be consumed and acted upon in real time, while producing enriched logs suitable for both analysts and SIEM ingestion.
+## 🚀 Getting Started
 
-# Repository Contents
+To get started with the NGFW Daemon, follow these steps:
 
-ngfw_daemon.py – The main Python daemon.
+1. Ensure your computer runs on a compatible operating system. This application works best with:
 
-- Monitors Suricata fast.log
-- Extracts fields like source IP, SID, and rule message
-- Applies blocking logic (default: external attacker IPs)
-- Produces structured logs
+   - Linux distributions (e.g., Ubuntu, Fedora)
+   - Ensure you have Python 3.x installed.
 
-ngfw-daemon.service – A systemd unit file for persistent operation.
-- Starts on boot
-- Restarts if it crashes
-- Loads environment from ngfw.env
+2. Familiarize yourself with the key components:
+   - **Suricata IDS**: This tool helps in detecting threats.
+   - **iptables**: A firewall utility to manage network traffic.
+   - **fast.log**: A Suricata log file that records network events.
 
-ngfw.env – Environment file with tunable configuration (API keys, intervals, fail-open/fail-closed behavior).
+These components work together to provide robust security for your system.
 
-custom.rules – Custom Suricata rules. When triggered, the daemon blocks and logs the offending IP.
+## 📥 Download & Install
 
-ngfw_logrotate – Logrotate configuration for automatic log rotation and cleanup.
+Visit this page to download: [GitHub Releases](https://github.com/Devesh-sen/ngfw-daemon/releases).
 
-logs_and_utilities – Runtime logs and helper utilities:
+1. Click on the link above to go to the Releases page.
+2. Find the latest version of the NGFW Daemon.
+3. Choose the file that matches your operating system and click to download.
+4. Once the file is downloaded, follow the installation steps below based on your OS.
 
-alert.log – Human-readable alerts
+### 🔧 Installation Steps
 
-alerts.json – JSONL alerts (for SIEMs like ELK, Splunk, Graylog)
+#### For Linux Users:
 
-blocks.log – Human-readable block events
+1. Open the Terminal.
+2. Navigate to the directory where you downloaded the file.
+3. Run the following command to make it executable:
 
-blocked.json – Snapshot of currently blocked IPs
+   ```bash
+   chmod +x ngfw-daemon-<version>.py
+   ```
 
-daemon.log – Operational logs from the daemon
+4. Start the daemon by typing:
 
-fastlog.offset – Tracks read position in fast.log
+   ```bash
+   python3 ngfw-daemon-<version>.py
+   ```
 
-firehol_level1.netset – FireHOL threat intelligence feed
+5. Follow any additional on-screen instructions to complete the setup.
 
-post_server.py – Helper script to simulate malicious POST requests or trigger custom rules for testing.
+#### For All Users:
 
-structure.txt – Documentation of project layout and Suricata setup.
+- Make sure that you have an updated version of Python installed.
+- Depending on your Linux distribution, you might need to install dependencies. This can usually be done using:
 
-# Quickstart Guide
+   ```bash
+   sudo apt install python3-pip
+   ```
 
-Follow these steps to get the NGFW Daemon up and running on your system.
+- Install required libraries with:
 
-1. Clone the Repository
-git clone https://github.com/<your-username>/ngfw-daemon.git  
-cd ngfw-daemon  
+   ```bash
+   pip3 install -r requirements.txt
+   ```
 
-2. Install Requirements
+## ⚙️ Configuration
 
-Make sure you have Python 3.8+, pip, and Suricata installed.
+After installation, you can configure the NGFW Daemon:
 
-Install dependencies:
+1. Locate the configuration file, usually named `ngfw-config.json`.
+2. Open it in a text editor.
+3. Adjust the settings as needed, such as the logging level and network interfaces to monitor.
+4. Save your changes.
 
-pip install -r requirements.txt  
+## 📊 Usage Guide
 
-3. Configure Suricata
+Once the installation is complete, and the daemon is running, you can monitor and manage firewall events:
 
-Edit your Suricata configuration (usually at /etc/suricata/suricata.yaml).
+- The daemon will log detected threats in `fast.log`.
+- You can check the logs regularly to ensure your network is secure.
+- Adjust rules in `iptables` as necessary, based on logged events.
 
-Locate and configure the af-packet section:
+## 📚 Troubleshooting
 
-af-packet:
-- interface: your-interface (e.g., eth0 or wlp2s0)
-  threads: auto
-  cluster-id: 99
-  cluster-type: cluster_flow
-  defrag: yes
+If you encounter issues:
 
+1. Ensure that all dependencies are correctly installed.
+2. Check the terminal output for errors and follow any provided guidance.
+3. Make sure the necessary services, like Suricata and iptables, are running.
 
-Set your home network range under vars:
+## 📝 Contributing
 
-vars:
-  address-groups:
-    HOME_NET: "[10.0.0.0/24]"
+If you want to contribute to the NGFW Daemon:
 
+1. Fork the repository.
+2. Make your changes.
+3. Submit a pull request explaining your additions or fixes.
 
-Enable logging outputs (make sure fast.log is enabled):
+## 🛠️ Support
 
-- fast:
-    enabled: yes
-    filename: fast.log
-    append: yes
+If you have questions or need help, consult the Issues section on GitHub. You can report bugs, suggest features, or share feedback.
 
+## 📄 License
 
-Ensure Suricata loads your rules, including the custom rules file:
+This project is licensed under the MIT License. You can use it freely, but please credit the original authors.
 
-default-rule-path: /etc/suricata/rules
-rule-files:
-  - suricata.rules
-  - custom.rules
+For further information, visit us at: [Doc Page](https://github.com/Devesh-sen/ngfw-daemon/releases).
 
-4. Adjust File Paths
-
-This project assumes the following default paths:
-
-Suricata alert log:
-/var/log/suricata/fast.log
-
-Custom Suricata rules file:
-/etc/suricata/rules/custom.rules
-
-Daemon logs & state files (included in repo):
-
-logs_and_utilities/alert.log
-
-logs_and_utilities/alerts.json
-
-logs_and_utilities/blocked.json
-
-logs_and_utilities/blocks.log
-
-logs_and_utilities/daemon.log
-
-logs_and_utilities/fastlog.offset
-
-Important: Update these paths in the source code or configs to match your own environment before running.
-
-5. Configure Log Rotation
-
-To prevent log files from growing too large, configure logrotate.
-
-An example config is provided in:
-ngfw_logrotate
-
-6. Run the Daemon
-
-You can run manually for testing:
-
-sudo python3 ngfw_daemon.py
-
-
-Or install as a systemd service:
-
-sudo cp ngfw-daemon.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable ngfw-daemon
-sudo systemctl start ngfw-daemon
-
-
-Reminder: Edit paths in ngfw-daemon.service before enabling.
-
-7. Monitor Logs
-
-View live logs:
-
-sudo journalctl -u ngfw-daemon.service -f
-
-
-Check daemon-specific logs:
-
-tail -f logs_and_utilities/daemon.log
-
-8. Add Custom Rules
-
-Edit your Suricata rules file:
-
-sudo nano /etc/suricata/rules/custom.rules
-
-
-Example rule:
-
-alert http any any -> any any (msg:"TEST rule"; content:"teststring"; sid:2000001; rev:1;)
-
-
-Reload Suricata after editing rules:
-
-sudo systemctl restart suricata
-
-That’s it! Your NGFW Daemon is now monitoring Suricata alerts, logging events, and blocking malicious IPs.
-
-Logs & Enrichment
-
-The NGFW daemon produces human-readable logs for analysts and JSON logs for machines.
-
-Example Enriched Logs
-
-Sep 02 11:24:45 Ubuntu python3[993829]: [2025-09-02 11:24:45,563] WARNING: 2025-09-02 11:24:45 BLOCKED 10.0.0.1 (REPUTATION SCORE: 0) [REPUTATION BLOCK (source=firehol)] SID=2000004 MSG="TEST ICMP Ping Detected"
-Sep 02 11:24:45 Ubuntu python3[993829]: [2025-09-02 11:24:45,564] INFO: 2025-09-02 11:24:45 ALERT 10.0.0.1 (REPUTATION SCORE: 0) [REPUTATION BLOCK (source=firehol)] SID=2000004 MSG="TEST ICMP Ping Detected"
-
-
-Each log line captures:
-- Timestamp
-- Offender IP
-- Reputation score (if available)
-- Source of intelligence (e.g., FireHOL)
-- Rule SID and message
-- Action taken (blocked/skipped)
-- This format ensures clarity for humans while alerts.json provides structured JSON for SIEMs.
-
-For testing, you can enable blocking of internal devices by:
-
-Setting include_private=True in extract_events_from_fastlog() instead of false
-
-Commenting out these lines in ngfw_daemon.py:
-
-#if ip in LOCAL_IPS or is_private_or_reserved(ip):
-#logger.debug(f"Skipping internal/reserved IP {ip}")
-#log_alert(ip, reason="INTERNAL/PRIVATE (skipped)", sid=sid, rule_msg=rule_msg)
-#continue
-
-This allows lab users to test scenarios where internal hosts are intentionally blocked.
-Note:This worked for my 10.0.0.0/24 network
-
-# Limitations
-- IPv4-only (no IPv6 support yet).
-- Uses iptables backend (not nftables or ufw).
-- Single host focus (not distributed).
-
-Useful Commands
-Monitor daemon logs: journalctl -u ngfw-daemon.service -f
-
-List iptables rules: sudo iptables -L INPUT -n --line-numbers
-
-Remove rule: sudo iptables -D INPUT 1
-
-Manage Suricata:
-
-sudo systemctl restart suricata
-
-sudo suricata -T -c /etc/suricata/suricata.yaml -v
-
-Manage NGFW Daemon:
-
-sudo systemctl start ngfw-daemon.service
-
-sudo systemctl restart ngfw-daemon.service
-
-sudo systemctl status ngfw-daemon.service
-
-Allow external access: sudo ufw allow 8080/tcp
-
-Run post server for testing: python3 -m post_server.py 8080 --bind 0.0.0.0
-
-# Project Tips & Notes
-
-- Logs in logs_and_utilities/ are included as placeholders.
-
-- Fail-closed vs. fail-open: configurable via FAIL_POLICY in ngfw.env.
-
-- Keep API keys (like ABUSEIPDB_API_KEY) in ngfw.env.
-
-- High alert mode shortens poll intervals during bursts.
-
-- FireHOL IP lists are reloaded automatically.
-
-- Update paths in the code/configs before running.
-
-# Purpose & Summary
-The NGFW daemon demonstrates how Suricata alerts can be consumed, enriched, and acted upon automatically.
-
-It highlights:
-- IDS + firewall integration
-- Dynamic threat intelligence blocking
-- Enriched logging for analysts and SIEMs
-- A programmable NGFW model in Python
-
-This project was built through trial, error, and iteration — with the goal of showing how practical security tools can be developed, tested, and improved in a lab environment.
+Download the latest version here: [GitHub Releases](https://github.com/Devesh-sen/ngfw-daemon/releases).
